@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{
+  font-family: helvetica, arial;
+  box-sizing: border-box;
+  color: #263D44;
+}
+.app{
+  background: #263D44;
+  width: 40%;
+  margin: 0 auto 50px auto;
+  padding: 13px;
+  margin-top: 25vh;
+  border-radius: 20px;
+
+}
+button{
+  width: 25%;
+  background-color: #84B59F;
+  outline: none;
+  font-weight: 1000;
+  font-size: 0.75em;
+  border-bottom: solid 3px #69A297;
+border-left: none;
+  border-right: solid 1px #579B98;
+}
+button:hover{
+  background-color: #A3C9A8;
+}
+.lb{
+  border-radius: 10px 0 0 0;
+}
+.rb{
+  border-radius: 0 10px 0 0;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+
+  height: 40px;
+
+}
+
+textarea{
+  background-color: #DDD8C4;
+  width: 100%;
+  padding: 20px;
+  font-size: 1em;
+  resize: none;
+  outline: none;
+}
+</style>
+<script>
+
+const TitleCase = (string) => {
+      var result = [];
+      var a = string.toLowerCase().split(" ");
+      // reset to lower case and split where the spaces are.
+
+      for(let i = 0; i < a.length; i++){ // do every word
+          a[i] = a[i][0].toUpperCase() + a[i].substr(1); 
+        // first letter to upper case and then add the rest
+          result.push(a[i]); // collect results in an array
+        }
+
+      return result.join(' '); // et voila.
+};
+
+const SentenceCase = (string) => {
+      var result = [];
+      let words = string.toLowerCase().split(" ");
+      let newsentence = true;
+  
+      for(let i = 0; i < words.length; i++){
+      
+        if (newsentence==true || words[i]=="i"){
+          words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+          newsentence = false;
+        }
+          
+        if (words[i][words[i].length-1] === "." || words[i][words[i].length-1] === "?" || words[i][words[i].length-1] === "!" ){            
+          newsentence = true;
+        }
+      
+      }
+
+      return words.join(" ");
+
+    };
+
+var memo = document.getElementById("text");
+
+document.getElementById("lower").addEventListener("click", function(){
+  memo.value = memo.value.toLowerCase();
+});
+
+document.getElementById("upper").addEventListener("click", function(){
+  memo.value = memo.value.toUpperCase();
+});
+
+document.getElementById("sentence").addEventListener("click", function(){
+  memo.value = SentenceCase(memo.value);
+});
+
+document.getElementById("title").addEventListener("click", function(){
+  memo.value = TitleCase(memo.value);
+});
+</script>
+</head>
+<body>
+
+  <div class="app">
+     <div class="flex">
+      <button id="upper" class="lb">UPPER CASE</button>
+      <button id="lower">lower case</button>
+      <button id="sentence">Sentence case</button>
+      <button id="title" class="rb">Title Case</button>
+      
+    </div>
+       <textarea id="text" placeholder="Paste your text here and click one of the buttons above..." rows=12></textarea>
+ 
+ 
+
+  </div>  
+  <!-- Not needed anymore
+  <p>toUpperCase();</p><p id="caps">Where's the JS?</p>
+  <hr>
+<p>toLowerCase();</p><p id="lower">Where's the JS?</p>
+<hr>
+  <p>TitleCase();</p><p id="title">Where's JS?</p>
+<hr> 
+  <p>SentenceCase();</p><p id="sentence">Where's JS?</p>
+<hr> -->
+  
+  </body>
+</html>
