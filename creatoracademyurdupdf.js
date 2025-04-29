@@ -345,7 +345,7 @@
                 redirectNotice.style.display = 'block';
                 setTimeout(() => {
                     window.location.href = "https://creatoracademyurdu.blogspot.com/2025/03/advanced-pdf-processor.html";
-                }, 5000);
+                }, 1000);
             }, 100);
             
         } catch (error) {
